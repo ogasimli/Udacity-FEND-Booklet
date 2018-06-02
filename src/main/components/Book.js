@@ -40,7 +40,7 @@ function Book(props) {
           />
         ) : (
           <div className="book-cover">
-            <span className="no-image" />
+            <div className="no-image" />
           </div>
         )}
         <ShelfSelector book={book} onChangeShelf={(book, shelf) => {}} />
