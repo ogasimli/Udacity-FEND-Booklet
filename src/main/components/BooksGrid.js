@@ -20,7 +20,7 @@ function BooksGrid(props) {
 }
 
 BooksGrid.propTypes = {
-  book: PropTypes.array.isRequired
+  books: PropTypes.array.isRequired
 };
 
 export default BooksGrid;
