@@ -50,16 +50,15 @@ function BookDetails(props) {
               {book.publishedDate || "a certain date in history"}
             </li>
           </ul>
+          <div className="rating-stars">
+            {generateRatingTags(book)}
+            <div className="review-count">
+              (Based on {book.ratingsCount || 0} reviews)
+            </div>
+          </div>
         </div>
 
         <div className="book-summary">{book.description}</div>
-
-        <div className="rating-stars">
-          {generateRatingTags(book)}
-          <div className="review-count">
-            (Based on {book.ratingsCount || 0} reviews)
-          </div>
-        </div>
       </div>
     </div>
   );
