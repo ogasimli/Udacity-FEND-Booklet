@@ -11,21 +11,43 @@ body,
   background: white;
 }
 
-/* main page */
+/* -- Header -- */
 
 .list-books-title {
-  padding: 10px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  font-size: 1.5rem;
+  padding: 0.5em;
   background: #2e7c31;
+  box-shadow: darkgrey 0 0 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-books-title h1 {
+  margin: 0;
+  flex-grow: 1;
+  color: white;
+  font-size: 1.5rem;
   text-align: center;
 }
-.list-books-title h1 {
-  font-weight: 400;
-  margin: 0;
+
+.list-books-title i {
   color: white;
 }
 
+.list-books-title.without-back-button {
+  padding-left: 1.35em;
+}
+
+/* -- Book List -- */
+
 .list-books-content {
-  padding: 0 0 80px;
+  padding: 50px 0 0;
   flex: 1;
 }
 
@@ -200,4 +222,82 @@ a .book-cover {
 
 .display-linebreak {
   white-space: pre-line;
+}
+
+.book-details {
+  padding: 5em 0 0 0;
+  max-width: 700px;
+  box-sizing: border-box;
+  margin: auto;
+}
+
+.book-details > :first-child {
+  margin-top: 0;
+}
+
+.book-details.full-width {
+  max-width: none;
+}
+
+.book-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.book-info .book {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.book-info .book-title {
+  margin: 1em 0 0;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.book-info ul {
+  width: 100%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9em;
+  list-style-type: circle;
+}
+
+.book-info .book-subtitle {
+  font-size: 0.9em;
+}
+
+.book-summary {
+  text-align: justify;
+}
+
+/* -- Book rating -- */
+
+.rating-stars {
+  margin: 2em 0;
+  text-align: center;
+}
+
+.rating-stars i {
+  font-size: 1.5em;
+  color: #2e7c31;
+}
+
+.rating-stars > .fa-star:not(:first-child) {
+  margin-left: 0.5em;
+}
+
+.rating-stars .review-count {
+  font-size: 0.8em;
+  margin-top: 0.5em;
+  color: darkgray;
 }

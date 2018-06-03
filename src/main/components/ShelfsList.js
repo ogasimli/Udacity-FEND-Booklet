@@ -29,9 +29,9 @@ function ShelfsList(props) {
 
   return (
     <div className="list-books">
-      <div className="list-books-title">
+      <header className="list-books-title without-back-button">
         <h1>Booklet</h1>
-      </div>
+      </header>
       <div className="list-books-content">
         {shelves.map(shelf => (
           <div key={shelf.id}>
