@@ -8,7 +8,7 @@ import { Link, withRouter } from "react-router-dom";
  * most relevant information: title, authors and a thumbnail image.
  */
 function Book(props) {
-  const { book, location } = props;
+  const { book, onChangeShelf, location } = props;
 
   /**
    * Checks if there's a thumbnail available for the book.
@@ -53,7 +53,7 @@ function Book(props) {
           getThumbnail(book)
         )}
 
-        <ShelfSelector book={book} onChangeShelf={(book, shelf) => {}} />
+        <ShelfSelector book={book} onChangeShelf={onChangeShelf} />
       </div>
 
       <div className="book-title">{book.title}</div>
@@ -69,6 +69,7 @@ function Book(props) {
 
 Book.propTypes = {
   book: PropTypes.object.isRequired,
+  onChangeShelf: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired
 };
 

@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
  * Stateless component that represents the grid of books.
  */
 function ShelfsList(props) {
-  const { books } = props;
+  const { books, onChangeShelf } = props;
 
   /**
    * Shelves object that holds id and names of our shelf categories
@@ -35,7 +35,11 @@ function ShelfsList(props) {
       <div className="list-books-content">
         {shelves.map(shelf => (
           <div key={shelf.id}>
-            <BookShelf shelf={shelf} books={shelfsBooks(shelf, books)} />
+            <BookShelf
+              shelf={shelf}
+              books={shelfsBooks(shelf, books)}
+              onChangeShelf={onChangeShelf}
+            />
           </div>
         ))}
         <div className="open-search">
@@ -47,7 +51,8 @@ function ShelfsList(props) {
 }
 
 ShelfsList.propTypes = {
-  books: PropTypes.array.isRequired
+  books: PropTypes.array.isRequired,
+  onChangeShelf: PropTypes.func.isRequired
 };
 
 export default ShelfsList;

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
  * Stateless component that represents the grid of books.
  */
 function BookDetails(props) {
-  const { book } = props;
+  const { book, onChangeShelf } = props;
 
   /**
    * Configure rating stars for the book based on its average rating
@@ -42,7 +42,7 @@ function BookDetails(props) {
       </header>
       <div className="book-details">
         <div className="book-info">
-          <Book book={book} />
+          <Book book={book} onChangeShelf={onChangeShelf} />
           <ul>
             <li>Number of pages: {book.pageCount}</li>
             <li>
@@ -65,7 +65,8 @@ function BookDetails(props) {
 }
 
 BookDetails.propTypes = {
-  book: PropTypes.object.isRequired
+  book: PropTypes.object.isRequired,
+  onChangeShelf: PropTypes.func.isRequired
 };
 
 export default BookDetails;
