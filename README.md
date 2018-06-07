@@ -44,7 +44,7 @@ To run this app you will have to have [**Node.js**](https://nodejs.org/en/) and 
 
 Please follow below instructions to run the project in your machine:
 
-1.  Clone repository to your local disk
-2.  Open terminal and navigate to the project folder
-3.  Run `npm install` command from terminal to install all npm dependencies
-4.  Run `npm start` command to compile project and run a **dev version** of the application
+1. Clone repository to your local disk
+2. Open terminal and navigate to the project folder
+3. Run `npm install` command from terminal to install all npm dependencies
+4. Run `npm start` command to compile project and run a **dev version** of the application
