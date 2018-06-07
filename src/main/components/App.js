@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import ShelfsList from "./ShelfsList";
+import BookSearch from "./BookSearch";
 import BookDetails from "./BookDetails";
 import * as BooksAPI from "../utils/BooksAPI";
 import "../../res/styles/App.css";
@@ -51,17 +52,19 @@ class BooksApp extends Component {
     if (booksIndex !== -1) {
       // If shelf is none
       if (shelf === "none") {
-        console.log(`"${book.title}" removed from shelves`);
+        console.log(
+          `"${book.title}" with id "${book.id}" removed from shelves`
+        );
         // Remove book from array
         books.splice(booksIndex, 1);
       } else {
-        console.log(`"${book.title}" moved to shelf "${shelf}"`);
+        console.log(`"${book.title}" "${book.id}" moved to shelf "${shelf}"`);
         // Update book in the array
         books[booksIndex] = book;
       }
-    } else if (shelf === "none") {
+    } else if (shelf !== "none") {
       // If book not found and shelf is not equal to none
-      console.log(`"${book.title}" added to shelf "${shelf}"`);
+      console.log(`"${book.title}" "${book.id}" added to shelf "${shelf}"`);
       // Add book to the array
       books.push(book);
     }
@@ -73,15 +76,35 @@ class BooksApp extends Component {
    * Find book instance from array based on its ID
    *
    * @param {Object} book - the book that that is searched for
+   * @returns {Number}
    */
   getBooksIndex = book => this.state.books.indexOf(book);
 
   /**
-   * Find book instance from array based on its ID
+   * Find book instance from local array or
+   * fetch it from API based on its ID
    *
    * @param {String} id - id of the book
+   * @returns {Object}
    */
-  getBookById = id => this.state.books.find(book => book.id === id);
+  getBookById = id => {
+    let book = this.state.books.find(book => book.id === id);
+    if (book) {
+      return Promise.resolve(book);
+    } else {
+      return BooksAPI.get(id);
+    }
+  };
+
+  /**
+   * Obtains the shelf name to which a certain book belongs to.
+   * @param {string} bookId
+   * @returns {Event} string - Name of the shelf for the selected book.
+   */
+  getBookShelf = bookId => {
+    let foundBook = this.state.books.find(book => book.id === bookId);
+    return foundBook ? foundBook.shelf : "none";
+  };
 
   render() {
     return (
@@ -98,10 +121,22 @@ class BooksApp extends Component {
         />
 
         <Route
+          path="/search/:query?"
+          render={({ match }) => (
+            <BookSearch
+              query={match.params.query}
+              getBookShelf={this.getBookShelf}
+              onChangeShelf={this.updateBookShelf}
+            />
+          )}
+        />
+
+        <Route
           path="/details/:bookId"
           render={props => (
             <BookDetails
-              book={this.getBookById(props.match.params.bookId)}
+              bookId={props.match.params.bookId}
+              getBookById={this.getBookById}
               onChangeShelf={this.updateBookShelf}
             />
           )}
