@@ -47,17 +47,17 @@ function Book(props) {
   return (
     <div className="book">
       <div className="book-top">
-        {location.pathname === "/" ? (
-          <Link to={`/details/${book.id}`}>{getThumbnail(book)}</Link>
-        ) : (
+        {location.pathname.indexOf("/details") >= 0 ? (
           getThumbnail(book)
+        ) : (
+          <Link to={`/details/${book.id}`}>{getThumbnail(book)}</Link>
         )}
 
         <ShelfSelector book={book} onChangeShelf={onChangeShelf} />
       </div>
 
       <div className="book-title">{book.title}</div>
-      {location.pathname !== "/" && (
+      {location.pathname.indexOf("/details") >= 0 && (
         <div className="book-subtitle">{book.subtitle}</div>
       )}
       <div className="book-authors display-linebreak">
