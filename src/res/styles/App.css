@@ -134,8 +134,8 @@ main {
 
 .open-search a {
   display: block;
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 3.3rem;
+  height: 3.3rem;
   border-radius: 50%;
   background: #8c43ff url("../images/icons/add.svg") no-repeat center;
   background-size: 2.5rem;
@@ -157,10 +157,12 @@ main {
   margin: 3em auto 2em;
   display: flex;
 }
+
 .search-books-input-wrapper {
   flex: 1;
   background: #e9e;
 }
+
 .search-books-bar input {
   width: 100%;
   padding: 15px 10px;
