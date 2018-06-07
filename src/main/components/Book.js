@@ -24,7 +24,10 @@ function Book(props) {
     return isThumbnailAvailable(book) ? (
       <div
         className="book-cover"
-        style={{ backgroundImage: `url('${book.imageLinks.thumbnail}')` }}
+        style={{
+          background: `url('${book.imageLinks.thumbnail}') no-repeat center`,
+          backgroundSize: "100% 100%"
+        }}
       />
     ) : (
       <div className="book-cover">
