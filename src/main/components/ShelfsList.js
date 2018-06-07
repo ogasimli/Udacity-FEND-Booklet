@@ -1,6 +1,8 @@
 import React from "react";
+import Header from "./Header";
 import BookShelf from "./BookShelf";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 /**
  * Stateless component that represents the grid of books.
@@ -28,24 +30,24 @@ function ShelfsList(props) {
     books.filter(book => book.shelf === shelf.id);
 
   return (
-    <div className="list-books">
-      <header className="list-books-title without-back-button">
-        <h1>Booklet</h1>
-      </header>
-      <div className="list-books-content">
-        {shelves.map(shelf => (
-          <div key={shelf.id}>
-            <BookShelf
-              shelf={shelf}
-              books={shelfsBooks(shelf, books)}
-              onChangeShelf={onChangeShelf}
-            />
+    <div className="container">
+      <Header />
+      <main>
+        <div className="list-books-content">
+          {shelves.map(shelf => (
+            <div key={shelf.id}>
+              <BookShelf
+                shelf={shelf}
+                books={shelfsBooks(shelf, books)}
+                onChangeShelf={onChangeShelf}
+              />
+            </div>
+          ))}
+          <div className="open-search">
+            <Link to={"/search"}>Add a book</Link>
           </div>
-        ))}
-        <div className="open-search">
-          <a onClick={() => {}}>Add a book</a>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

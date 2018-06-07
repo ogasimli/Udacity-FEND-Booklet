@@ -1,13 +1,26 @@
-import React from "react";
-import Book from "./Book";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import Header from "./Header";
+import Book from "./Book";
 
 /**
  * Stateless component that represents the grid of books.
  */
-function BookDetails(props) {
-  const { book, onChangeShelf } = props;
+class BookDetails extends Component {
+  static propTypes = {
+    bookId: PropTypes.string.isRequired,
+    getBookById: PropTypes.func.isRequired,
+    onChangeShelf: PropTypes.func.isRequired
+  };
+
+  state = {
+    book: {}
+  };
+
+  componentDidMount() {
+    const { bookId, getBookById } = this.props;
+    getBookById(bookId).then(book => this.setState({ book }));
+  }
 
   /**
    * Configure rating stars for the book based on its average rating
@@ -15,7 +28,7 @@ function BookDetails(props) {
    * @param {object} book - the book which rating should be detrmined
    * @return {array}
    */
-  const generateRatingTags = book => {
+  generateRatingTags = book => {
     const avgRating = book.averageRating || 0;
 
     let highlightStar = [];
@@ -32,41 +45,37 @@ function BookDetails(props) {
     return highlightStar;
   };
 
-  return (
-    <div className="list-books">
-      <header className="list-books-title">
-        <Link className="back-button" to="/">
-          <i className="fas fa-arrow-left" />
-        </Link>
-        <h1>Booklet</h1>
-      </header>
-      <div className="book-details">
-        <div className="book-info">
-          <Book book={book} onChangeShelf={onChangeShelf} />
-          <ul>
-            <li>Number of pages: {book.pageCount}</li>
-            <li>
-              Published by {book.publisher || "an unknown entity"} on{" "}
-              {book.publishedDate || "a certain date in history"}
-            </li>
-          </ul>
-          <div className="rating-stars">
-            {generateRatingTags(book)}
-            <div className="review-count">
-              (Based on {book.ratingsCount || 0} reviews)
+  render() {
+    const book = this.state.book;
+
+    return (
+      <div className="container">
+        <Header />
+        <main>
+          <div className="book-details">
+            <div className="book-info">
+              <Book book={book} onChangeShelf={this.props.onChangeShelf} />
+              <ul>
+                <li>Number of pages: {book.pageCount}</li>
+                <li>
+                  Published by {book.publisher || "an unknown entity"} on{" "}
+                  {book.publishedDate || "a certain date in history"}
+                </li>
+              </ul>
+              <div className="rating-stars">
+                {this.generateRatingTags(book)}
+                <div className="review-count">
+                  (Based on {book.ratingsCount || 0} reviews)
+                </div>
+              </div>
             </div>
+
+            <div className="book-summary">{book.description}</div>
           </div>
-        </div>
-
-        <div className="book-summary">{book.description}</div>
+        </main>
       </div>
-    </div>
-  );
+    );
+  }
 }
-
-BookDetails.propTypes = {
-  book: PropTypes.object.isRequired,
-  onChangeShelf: PropTypes.func.isRequired
-};
 
 export default BookDetails;
