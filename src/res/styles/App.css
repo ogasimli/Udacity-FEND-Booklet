@@ -361,3 +361,14 @@ a .book-cover {
   margin-top: 0.5em;
   color: darkgray;
 }
+
+/* Toast */
+.toast-message {
+  color: #8c43ff;
+  font-family: "Roboto", cursive;
+  font-size: 0.9em;
+}
+
+.toast-message .toast-book-title {
+  font-weight: bold;
+}

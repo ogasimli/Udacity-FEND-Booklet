@@ -3,8 +3,11 @@ import { Route } from "react-router-dom";
 import ShelfsList from "./ShelfsList";
 import BookSearch from "./BookSearch";
 import BookDetails from "./BookDetails";
+import { shelves } from "../utils/Constants";
 import * as BooksAPI from "../utils/BooksAPI";
 import "../../res/styles/App.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 class BooksApp extends Component {
   state = {
@@ -28,11 +31,11 @@ class BooksApp extends Component {
    * Update book's shelf and then update the local books array
    *
    * @param {Object} book - book that should be manipulated
-   * @param {String} shelf - id of the shelf, into which book should be moved
+   * @param {String} shelfId - id of the shelf, into which book should be moved
    */
-  updateBookShelf = (book, shelf) => {
-    BooksAPI.update(book, shelf).then(res => {
-      this.updateBookList(book, shelf);
+  updateBookShelf = (book, shelfId) => {
+    BooksAPI.update(book, shelfId).then(res => {
+      this.updateBookList(book, shelfId);
     });
   };
 
@@ -41,36 +44,83 @@ class BooksApp extends Component {
    * depending on the selected shelf
    *
    * @param {Object} book - book that should be manipulated
-   * @param {String} shelf - id of the shelf, into which book should be moved
+   * @param {String} shelfId - id of the shelf, into which book should be moved
    */
-  updateBookList = (book, shelf) => {
+  updateBookList = (book, shelfId) => {
     const books = this.state.books;
     const booksIndex = this.getBooksIndex(book);
-    book.shelf = shelf;
+    book.shelf = shelfId;
+    let messageBody = "Problem occured";
 
     // If book found
     if (booksIndex !== -1) {
       // If shelf is none
-      if (shelf === "none") {
-        console.log(
-          `"${book.title}" with id "${book.id}" removed from shelves`
-        );
+      if (shelfId === "none") {
+        messageBody = "removed from shelves";
         // Remove book from array
         books.splice(booksIndex, 1);
       } else {
-        console.log(`"${book.title}" "${book.id}" moved to shelf "${shelf}"`);
+        messageBody = "moved to";
         // Update book in the array
         books[booksIndex] = book;
       }
-    } else if (shelf !== "none") {
-      // If book not found and shelf is not equal to none
-      console.log(`"${book.title}" "${book.id}" added to shelf "${shelf}"`);
-      // Add book to the array
-      books.push(book);
+    } else {
+      if (shelfId !== "none") {
+        // If book not found and shelf is not equal to none
+        messageBody = "added to";
+        // Add book to the array
+        books.push(book);
+      } else {
+        // If book not found and shelf is equal to none
+        messageBody = "was not in your books shelf";
+      }
     }
 
     this.setState({ books });
+    this.showToast(book, messageBody, shelfId);
   };
+
+  /**
+   * Show toast message
+   *
+   * @param {Object} book - the book object
+   * @param {String} messageBody - the main message body
+   * @param {String} shelfId - id of the book's shelf
+   */
+  showToast = (book, messageBody, shelfId) => {
+    let title = book.title ? book.title : "Unknown";
+    let author = book.authors ? `by ${book.authors[0]}` : "";
+    let shelf = this.getShelfNameById(shelfId);
+    if (shelf) shelf += " shelf";
+    toast(
+      <this.ToastMsg
+        title={title}
+        author={author}
+        messageBody={messageBody}
+        shelf={shelf}
+      />,
+      {
+        position: toast.POSITION.BOTTOM_CENTER
+      }
+    );
+  };
+
+  /**
+   * Toast message to be displayed to the user
+   */
+  ToastMsg = ({ title, author, messageBody, shelf }) => (
+    <div className="toast-message">
+      {messageBody === "Problem occured" ? (
+        <div>messageBody</div>
+      ) : (
+        <div>
+          <span className="toast-book-title">'{title}'</span>{" "}
+          <span className="toast-book-author">{author}</span> {messageBody}{" "}
+          <span className="toast-book-shelf">{shelf}</span>
+        </div>
+      )}
+    </div>
+  );
 
   /**
    * Find book instance from array based on its ID
@@ -98,12 +148,24 @@ class BooksApp extends Component {
 
   /**
    * Obtains the shelf name to which a certain book belongs to.
-   * @param {string} bookId
-   * @returns {Event} string - Name of the shelf for the selected book.
+   *
+   * @param {string} bookId - id of the selected book.
+   * @returns {Event} string
    */
   getBookShelf = bookId => {
     let foundBook = this.state.books.find(book => book.id === bookId);
     return foundBook ? foundBook.shelf : "none";
+  };
+
+  /**
+   * Get shlef name by its id
+   *
+   * @param {string} shelfId - id of the shelf
+   * @returns {Event} string
+   */
+  getShelfNameById = shelfId => {
+    let shelf = shelves.find(shelf => shelf.id === shelfId);
+    return shelf ? shelf.title : "";
   };
 
   render() {
@@ -141,6 +203,8 @@ class BooksApp extends Component {
             />
           )}
         />
+
+        <ToastContainer />
       </div>
     );
   }

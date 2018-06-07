@@ -3,21 +3,13 @@ import Header from "./Header";
 import BookShelf from "./BookShelf";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { shelves } from "../utils/Constants";
 
 /**
  * Stateless component that represents the grid of books.
  */
 function ShelfsList(props) {
   const { books, onChangeShelf } = props;
-
-  /**
-   * Shelves object that holds id and names of our shelf categories
-   */
-  const shelves = [
-    { id: "currentlyReading", title: "Currently Reading" },
-    { id: "wantToRead", title: "Want to Read" },
-    { id: "read", title: "Read" }
-  ];
 
   /**
    * Function returns books belonging to a particular shelf
