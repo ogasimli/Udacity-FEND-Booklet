@@ -166,7 +166,8 @@ main {
 .search-books-bar input {
   width: 100%;
   padding: 15px 10px;
-  font-size: 1.25em;
+  font-size: 1em;
+  font-family: "Righteous", cursive;
   text-align: center;
   border: none;
   outline: none;
