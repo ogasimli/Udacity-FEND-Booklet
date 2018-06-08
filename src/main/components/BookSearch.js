@@ -4,6 +4,7 @@ import Header from './Header';
 import BooksGrid from './BooksGrid';
 import { ToastContainer } from 'react-toastify';
 import * as BooksAPI from '../utils/BooksAPI';
+import * as Utils from '../utils/Utils';
 
 class BookSearch extends React.Component {
   static propTypes = {
@@ -42,7 +43,7 @@ class BookSearch extends React.Component {
    *
    * @param {string} query - Search term that will be used as a query.
    */
-  searchBook = query => {
+  searchBook = Utils.debounce(query => {
     if (query) {
       BooksAPI.search(query).then(result => {
         if (result && !result.error) {
@@ -56,7 +57,7 @@ class BookSearch extends React.Component {
     } else {
       this.setState({ books: [] });
     }
-  };
+  }, 1000);
 
   render() {
     const { query, books } = this.state;
