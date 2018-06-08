@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import ShelfsList from './ShelfsList';
 import BookSearch from './BookSearch';
 import BookDetails from './BookDetails';
+import PageNotFound from './PageNotFound';
 import { shelves } from '../utils/Constants';
 import * as BooksAPI from '../utils/BooksAPI';
 import '../../res/styles/App.css';
@@ -172,39 +173,42 @@ class BooksApp extends Component {
   render() {
     return (
       <div className="app">
-        <Route
-          exact
-          path="/"
-          render={() => (
-            <ShelfsList
-              books={this.state.books}
-              onChangeShelf={this.updateBookShelf}
-            />
-          )}
-        />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <ShelfsList
+                books={this.state.books}
+                onChangeShelf={this.updateBookShelf}
+              />
+            )}
+          />
 
-        <Route
-          path="/search/:query?"
-          render={({ match }) => (
-            <BookSearch
-              query={match.params.query}
-              getBookShelf={this.getBookShelf}
-              onChangeShelf={this.updateBookShelf}
-            />
-          )}
-        />
+          <Route
+            path="/search/:query?"
+            render={({ match }) => (
+              <BookSearch
+                query={match.params.query}
+                getBookShelf={this.getBookShelf}
+                onChangeShelf={this.updateBookShelf}
+              />
+            )}
+          />
 
-        <Route
-          path="/details/:bookId"
-          render={props => (
-            <BookDetails
-              bookId={props.match.params.bookId}
-              getBookById={this.getBookById}
-              onChangeShelf={this.updateBookShelf}
-            />
-          )}
-        />
+          <Route
+            path="/details/:bookId"
+            render={props => (
+              <BookDetails
+                bookId={props.match.params.bookId}
+                getBookById={this.getBookById}
+                onChangeShelf={this.updateBookShelf}
+              />
+            )}
+          />
 
+          <Route path="*" component={PageNotFound} />
+        </Switch>
       </div>
     );
   }
