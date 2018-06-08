@@ -15,7 +15,7 @@ body,
 
 body {
   line-height: 1.5;
-  font-family: "Roboto", Helvetica, sans-serif;
+  font-family: 'Roboto', Helvetica, sans-serif;
 }
 
 body,
@@ -24,7 +24,7 @@ body,
 }
 
 .container {
-  font-family: "Righteous", cursive;
+  font-family: 'Righteous', cursive;
 }
 
 /* -- Header -- */
@@ -51,7 +51,7 @@ header h1 {
   font-size: 1.5rem;
   letter-spacing: 4px;
   text-align: center;
-  font-family: "Black Ops One", cursive;
+  font-family: 'Black Ops One', cursive;
 }
 
 header.without-back-button {
@@ -64,7 +64,7 @@ header .ico {
 }
 
 header .ico.back-button {
-  background: url("../images/icons/arrow-back.svg") no-repeat center;
+  background: url('../images/icons/arrow-back.svg') no-repeat center;
   transition: all 0.3s ease-in-out;
 }
 
@@ -137,7 +137,7 @@ main {
   width: 3.3rem;
   height: 3.3rem;
   border-radius: 50%;
-  background: #8c43ff url("../images/icons/add.svg") no-repeat center;
+  background: #8c43ff url('../images/icons/add.svg') no-repeat center;
   background-size: 2.5rem;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   font-size: 0;
@@ -167,7 +167,7 @@ main {
   width: 100%;
   padding: 15px 10px;
   font-size: 1em;
-  font-family: "Righteous", cursive;
+  font-family: 'Righteous', cursive;
   text-align: center;
   border: none;
   outline: none;
@@ -248,8 +248,8 @@ a .book-cover {
 }
 
 .book-cover .no-image::before {
-  content: "";
-  background: transparent url("../images/no-image.svg") no-repeat center;
+  content: '';
+  background: transparent url('../images/no-image.svg') no-repeat center;
   background-size: 50%;
   width: 130px;
   height: 190px;
@@ -267,7 +267,7 @@ a .book-cover {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #696373 url("../images/icons/arrow-drop-down.svg") no-repeat
+  background: #696373 url('../images/icons/arrow-drop-down.svg') no-repeat
     center;
   background-size: 20px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -375,7 +375,7 @@ a .book-cover {
 /* Toast */
 .toast-message {
   color: #8c43ff;
-  font-family: "Roboto", cursive;
+  font-family: 'Roboto', cursive;
   font-size: 0.9em;
 }
 
