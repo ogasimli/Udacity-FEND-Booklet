@@ -1,7 +1,7 @@
-import React from "react";
-import ShelfSelector from "./ShelfSelector";
-import PropTypes from "prop-types";
-import { Link, withRouter } from "react-router-dom";
+import React from 'react';
+import ShelfSelector from './ShelfSelector';
+import PropTypes from 'prop-types';
+import { Link, withRouter } from 'react-router-dom';
 
 /**
  * Stateless component that represents a book item and displays its
@@ -26,7 +26,7 @@ function Book(props) {
         className="book-cover"
         style={{
           background: `url('${book.imageLinks.thumbnail}') no-repeat center`,
-          backgroundSize: "100% 100%"
+          backgroundSize: '100% 100%'
         }}
       />
     ) : (
@@ -44,13 +44,13 @@ function Book(props) {
    * @return {string}
    */
   const formatAuthors = authors => {
-    return authors ? authors.join(",\n") : "Unknown";
+    return authors ? authors.join(',\n') : 'Unknown';
   };
 
   return (
     <div className="book">
       <div className="book-top">
-        {location.pathname.indexOf("/details") >= 0 ? (
+        {location.pathname.indexOf('/details') >= 0 ? (
           getThumbnail(book)
         ) : (
           <Link to={`/details/${book.id}`}>{getThumbnail(book)}</Link>
@@ -60,7 +60,7 @@ function Book(props) {
       </div>
 
       <div className="book-title">{book.title}</div>
-      {location.pathname.indexOf("/details") >= 0 && (
+      {location.pathname.indexOf('/details') >= 0 && (
         <div className="book-subtitle">{book.subtitle}</div>
       )}
       <div className="book-authors display-linebreak">

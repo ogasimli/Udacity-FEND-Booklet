@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import Header from "./Header";
-import Book from "./Book";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Header from './Header';
+import Book from './Book';
 
 /**
  * Stateless component that represents the grid of books.
@@ -58,8 +58,8 @@ class BookDetails extends Component {
               <ul>
                 <li>Number of pages: {book.pageCount}</li>
                 <li>
-                  Published by {book.publisher || "an unknown entity"} on{" "}
-                  {book.publishedDate || "a certain date in history"}
+                  Published by {book.publisher || 'an unknown entity'} on{' '}
+                  {book.publishedDate || 'a certain date in history'}
                 </li>
               </ul>
               <div className="rating-stars">

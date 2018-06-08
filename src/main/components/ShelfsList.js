@@ -1,9 +1,9 @@
-import React from "react";
-import Header from "./Header";
-import BookShelf from "./BookShelf";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { shelves } from "../utils/Constants";
+import React from 'react';
+import Header from './Header';
+import BookShelf from './BookShelf';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { shelves } from '../utils/Constants';
 
 /**
  * Stateless component that represents the grid of books.
@@ -36,7 +36,7 @@ function ShelfsList(props) {
             </div>
           ))}
           <div className="open-search">
-            <Link to={"/search"}>Add a book</Link>
+            <Link to={'/search'}>Add a book</Link>
           </div>
         </div>
       </main>

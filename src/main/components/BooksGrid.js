@@ -1,6 +1,6 @@
-import React from "react";
-import Book from "./Book";
-import PropTypes from "prop-types";
+import React from 'react';
+import Book from './Book';
+import PropTypes from 'prop-types';
 
 /**
  * Stateless component that represents the grid of books.

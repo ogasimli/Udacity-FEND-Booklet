@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { Route } from "react-router-dom";
-import ShelfsList from "./ShelfsList";
-import BookSearch from "./BookSearch";
-import BookDetails from "./BookDetails";
-import { shelves } from "../utils/Constants";
-import * as BooksAPI from "../utils/BooksAPI";
-import "../../res/styles/App.css";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+import ShelfsList from './ShelfsList';
+import BookSearch from './BookSearch';
+import BookDetails from './BookDetails';
+import { shelves } from '../utils/Constants';
+import * as BooksAPI from '../utils/BooksAPI';
+import '../../res/styles/App.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 class BooksApp extends Component {
   state = {
@@ -50,29 +50,29 @@ class BooksApp extends Component {
     const books = this.state.books;
     const booksIndex = this.getBooksIndex(book);
     book.shelf = shelfId;
-    let messageBody = "Problem occured";
+    let messageBody = 'Problem occured';
 
     // If book found
     if (booksIndex !== -1) {
       // If shelf is none
-      if (shelfId === "none") {
-        messageBody = "removed from shelves";
+      if (shelfId === 'none') {
+        messageBody = 'removed from library';
         // Remove book from array
         books.splice(booksIndex, 1);
       } else {
-        messageBody = "moved to";
+        messageBody = 'moved to';
         // Update book in the array
         books[booksIndex] = book;
       }
     } else {
-      if (shelfId !== "none") {
+      if (shelfId !== 'none') {
         // If book not found and shelf is not equal to none
-        messageBody = "added to";
+        messageBody = 'added to';
         // Add book to the array
         books.push(book);
       } else {
         // If book not found and shelf is equal to none
-        messageBody = "was not in your books shelf";
+        messageBody = 'was not in your books shelf';
       }
     }
 
@@ -88,10 +88,10 @@ class BooksApp extends Component {
    * @param {String} shelfId - id of the book's shelf
    */
   showToast = (book, messageBody, shelfId) => {
-    let title = book.title ? book.title : "Unknown";
-    let author = book.authors ? `by ${book.authors[0]}` : "";
+    let title = book.title ? book.title : 'Unknown';
+    let author = book.authors ? `by ${book.authors[0]}` : '';
     let shelf = this.getShelfNameById(shelfId);
-    if (shelf) shelf += " shelf";
+    if (shelf) shelf += ' shelf';
     toast(
       <this.ToastMsg
         title={title}
@@ -110,12 +110,12 @@ class BooksApp extends Component {
    */
   ToastMsg = ({ title, author, messageBody, shelf }) => (
     <div className="toast-message">
-      {messageBody === "Problem occured" ? (
+      {messageBody === 'Problem occured' ? (
         <div>messageBody</div>
       ) : (
         <div>
-          <span className="toast-book-title">'{title}'</span>{" "}
-          <span className="toast-book-author">{author}</span> {messageBody}{" "}
+          <span className="toast-book-title">'{title}'</span>{' '}
+          <span className="toast-book-author">{author}</span> {messageBody}{' '}
           <span className="toast-book-shelf">{shelf}</span>
         </div>
       )}
@@ -155,7 +155,7 @@ class BooksApp extends Component {
    */
   getBookShelf = bookId => {
     let foundBook = this.state.books.find(book => book.id === bookId);
-    return foundBook ? foundBook.shelf : "none";
+    return foundBook ? foundBook.shelf : 'none';
   };
 
   /**
@@ -166,7 +166,7 @@ class BooksApp extends Component {
    */
   getShelfNameById = shelfId => {
     let shelf = shelves.find(shelf => shelf.id === shelfId);
-    return shelf ? shelf.title : "";
+    return shelf ? shelf.title : '';
   };
 
   render() {

@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * Stateless component that contains options to move a book
@@ -19,7 +19,7 @@ function ShelfSelector(props) {
 
   return (
     <div className="book-shelf-changer">
-      <select value={book.shelf || "none"} onChange={changeShelf}>
+      <select value={book.shelf || 'none'} onChange={changeShelf}>
         <option value="placeholder" disabled>
           Move to...
         </option>

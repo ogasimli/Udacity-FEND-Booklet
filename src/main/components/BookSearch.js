@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Header from "./Header";
-import BooksGrid from "./BooksGrid";
-import * as BooksAPI from "../utils/BooksAPI";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Header from './Header';
+import BooksGrid from './BooksGrid';
+import * as BooksAPI from '../utils/BooksAPI';
 
 class BookSearch extends React.Component {
   static propTypes = {
@@ -12,7 +12,7 @@ class BookSearch extends React.Component {
   };
 
   state = {
-    query: "",
+    query: '',
     books: []
   };
 
