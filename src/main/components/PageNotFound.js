@@ -6,6 +6,7 @@ const PageNotFound = () => (
   <main className="error-container">
     <img
       className="error-image"
+      alt="Error Page Illustration"
       src="https://dh2wg6yal4wru.cloudfront.net/notfound.png"
     />
     <h1 className="error-heading">404 We're sorry!</h1>
