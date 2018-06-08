@@ -128,7 +128,8 @@ class BooksApp extends Component {
    * @param {Object} book - the book that that is searched for
    * @returns {Number}
    */
-  getBooksIndex = book => this.state.books.find(item => item.id === book.id);
+  getBooksIndex = book =>
+    this.state.books.findIndex(item => item.id === book.id);
 
   /**
    * Find book instance from local array or
