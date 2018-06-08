@@ -52,6 +52,8 @@ class BookSearch extends React.Component {
             return book;
           });
           this.setState({ books: booksWithShelves });
+        } else {
+          this.setState({ books: [] });
         }
       });
     } else {
