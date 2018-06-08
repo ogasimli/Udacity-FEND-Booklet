@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Header from './Header';
 import BooksGrid from './BooksGrid';
+import { ToastContainer } from 'react-toastify';
 import * as BooksAPI from '../utils/BooksAPI';
 
 class BookSearch extends React.Component {
@@ -94,6 +95,7 @@ class BookSearch extends React.Component {
             </div>
           </div>
         </main>
+        <ToastContainer />
       </div>
     );
   }

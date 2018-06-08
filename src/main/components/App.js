@@ -6,7 +6,7 @@ import BookDetails from './BookDetails';
 import { shelves } from '../utils/Constants';
 import * as BooksAPI from '../utils/BooksAPI';
 import '../../res/styles/App.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 class BooksApp extends Component {
@@ -205,7 +205,6 @@ class BooksApp extends Component {
           )}
         />
 
-        <ToastContainer />
       </div>
     );
   }

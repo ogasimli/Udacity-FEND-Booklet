@@ -3,10 +3,11 @@ import Header from './Header';
 import BookShelf from './BookShelf';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { shelves } from '../utils/Constants';
 
 /**
- * Stateless component that represents the grid of books.
+ * Stateless component that represents the list of shelves.
  */
 function ShelfsList(props) {
   const { books, onChangeShelf } = props;
@@ -40,6 +41,7 @@ function ShelfsList(props) {
           </div>
         </div>
       </main>
+      <ToastContainer />
     </div>
   );
 }
